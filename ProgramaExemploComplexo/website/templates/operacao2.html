@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST">
+  <h3 align="center">Operacao 2 - Doacao/Herança/Partilha/Afins</h3>
+    <p align="center"><br>Transferencia entre contas cuja titularidade deve ser diferente, não importando o tipo de conta</p>
+  <div class="form-group">
+    <label for="conta_cedente">Conta Cedente</label>
+    <input
+      type="text"
+      class="form-control"
+      id="conta_cedente"
+      name="conta_cedente"
+      placeholder="Digite o número da conta cedente"
+    />
+  </div>
+  <div class="form-group">
+    <label for="conta_cessionaria">Conta Cessionária</label>
+    <input
+      type="text"
+      class="form-control"
+      id="conta_cessionaria"
+      name="conta_cessionaria"
+      placeholder="Digite o número da conta cessionaria"
+    />
+  </div>
+  <div class="form-group">
+    <label for="valor_transacao">Valor da Transferência</label>
+    <input
+      type="text"
+      class="form-control"
+      id="valor_transacao"
+      name="valor_transacao"
+      placeholder="Digite o valor da transação"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

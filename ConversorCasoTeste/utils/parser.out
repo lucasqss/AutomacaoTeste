@@ -1,0 +1,281 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression logical expression
+Rule 2     expression -> term
+Rule 3     term -> not term
+Rule 4     term -> ID binary NUMBER
+Rule 5     term -> ID IN LIST
+Rule 6     term -> ID binary ID
+Rule 7     logical -> AND
+Rule 8     logical -> OR
+Rule 9     binary -> EQUALS
+Rule 10    binary -> IN
+Rule 11    binary -> GT
+Rule 12    binary -> GTE
+Rule 13    binary -> LT
+Rule 14    binary -> LTE
+Rule 15    not -> NOT
+
+Terminals, with rules where they appear
+
+AND                  : 7
+EQUALS               : 9
+GT                   : 11
+GTE                  : 12
+ID                   : 4 5 6 6
+IN                   : 5 10
+LIST                 : 5
+LT                   : 13
+LTE                  : 14
+NOT                  : 15
+NUMBER               : 4
+OR                   : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+binary               : 4 6
+expression           : 1 1 0
+logical              : 1
+not                  : 3
+term                 : 2 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression logical expression
+    (2) expression -> . term
+    (3) term -> . not term
+    (4) term -> . ID binary NUMBER
+    (5) term -> . ID IN LIST
+    (6) term -> . ID binary ID
+    (15) not -> . NOT
+
+    ID              shift and go to state 4
+    NOT             shift and go to state 5
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 2
+    not                            shift and go to state 3
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . logical expression
+    (7) logical -> . AND
+    (8) logical -> . OR
+
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+
+    logical                        shift and go to state 6
+
+state 2
+
+    (2) expression -> term .
+
+    AND             reduce using rule 2 (expression -> term .)
+    OR              reduce using rule 2 (expression -> term .)
+    $end            reduce using rule 2 (expression -> term .)
+
+
+state 3
+
+    (3) term -> not . term
+    (3) term -> . not term
+    (4) term -> . ID binary NUMBER
+    (5) term -> . ID IN LIST
+    (6) term -> . ID binary ID
+    (15) not -> . NOT
+
+    ID              shift and go to state 4
+    NOT             shift and go to state 5
+
+    not                            shift and go to state 3
+    term                           shift and go to state 9
+
+state 4
+
+    (4) term -> ID . binary NUMBER
+    (5) term -> ID . IN LIST
+    (6) term -> ID . binary ID
+    (9) binary -> . EQUALS
+    (10) binary -> . IN
+    (11) binary -> . GT
+    (12) binary -> . GTE
+    (13) binary -> . LT
+    (14) binary -> . LTE
+
+    IN              shift and go to state 11
+    EQUALS          shift and go to state 12
+    GT              shift and go to state 13
+    GTE             shift and go to state 14
+    LT              shift and go to state 15
+    LTE             shift and go to state 16
+
+    binary                         shift and go to state 10
+
+state 5
+
+    (15) not -> NOT .
+
+    ID              reduce using rule 15 (not -> NOT .)
+    NOT             reduce using rule 15 (not -> NOT .)
+
+
+state 6
+
+    (1) expression -> expression logical . expression
+    (1) expression -> . expression logical expression
+    (2) expression -> . term
+    (3) term -> . not term
+    (4) term -> . ID binary NUMBER
+    (5) term -> . ID IN LIST
+    (6) term -> . ID binary ID
+    (15) not -> . NOT
+
+    ID              shift and go to state 4
+    NOT             shift and go to state 5
+
+    expression                     shift and go to state 17
+    term                           shift and go to state 2
+    not                            shift and go to state 3
+
+state 7
+
+    (7) logical -> AND .
+
+    ID              reduce using rule 7 (logical -> AND .)
+    NOT             reduce using rule 7 (logical -> AND .)
+
+
+state 8
+
+    (8) logical -> OR .
+
+    ID              reduce using rule 8 (logical -> OR .)
+    NOT             reduce using rule 8 (logical -> OR .)
+
+
+state 9
+
+    (3) term -> not term .
+
+    AND             reduce using rule 3 (term -> not term .)
+    OR              reduce using rule 3 (term -> not term .)
+    $end            reduce using rule 3 (term -> not term .)
+
+
+state 10
+
+    (4) term -> ID binary . NUMBER
+    (6) term -> ID binary . ID
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 18
+
+
+state 11
+
+    (5) term -> ID IN . LIST
+    (10) binary -> IN .
+
+    LIST            shift and go to state 20
+    NUMBER          reduce using rule 10 (binary -> IN .)
+    ID              reduce using rule 10 (binary -> IN .)
+
+
+state 12
+
+    (9) binary -> EQUALS .
+
+    NUMBER          reduce using rule 9 (binary -> EQUALS .)
+    ID              reduce using rule 9 (binary -> EQUALS .)
+
+
+state 13
+
+    (11) binary -> GT .
+
+    NUMBER          reduce using rule 11 (binary -> GT .)
+    ID              reduce using rule 11 (binary -> GT .)
+
+
+state 14
+
+    (12) binary -> GTE .
+
+    NUMBER          reduce using rule 12 (binary -> GTE .)
+    ID              reduce using rule 12 (binary -> GTE .)
+
+
+state 15
+
+    (13) binary -> LT .
+
+    NUMBER          reduce using rule 13 (binary -> LT .)
+    ID              reduce using rule 13 (binary -> LT .)
+
+
+state 16
+
+    (14) binary -> LTE .
+
+    NUMBER          reduce using rule 14 (binary -> LTE .)
+    ID              reduce using rule 14 (binary -> LTE .)
+
+
+state 17
+
+    (1) expression -> expression logical expression .
+    (1) expression -> expression . logical expression
+    (7) logical -> . AND
+    (8) logical -> . OR
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    $end            reduce using rule 1 (expression -> expression logical expression .)
+    AND             shift and go to state 7
+    OR              shift and go to state 8
+
+  ! AND             [ reduce using rule 1 (expression -> expression logical expression .) ]
+  ! OR              [ reduce using rule 1 (expression -> expression logical expression .) ]
+
+    logical                        shift and go to state 6
+
+state 18
+
+    (6) term -> ID binary ID .
+
+    AND             reduce using rule 6 (term -> ID binary ID .)
+    OR              reduce using rule 6 (term -> ID binary ID .)
+    $end            reduce using rule 6 (term -> ID binary ID .)
+
+
+state 19
+
+    (4) term -> ID binary NUMBER .
+
+    AND             reduce using rule 4 (term -> ID binary NUMBER .)
+    OR              reduce using rule 4 (term -> ID binary NUMBER .)
+    $end            reduce using rule 4 (term -> ID binary NUMBER .)
+
+
+state 20
+
+    (5) term -> ID IN LIST .
+
+    AND             reduce using rule 5 (term -> ID IN LIST .)
+    OR              reduce using rule 5 (term -> ID IN LIST .)
+    $end            reduce using rule 5 (term -> ID IN LIST .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 17 resolved as shift
+WARNING: shift/reduce conflict for OR in state 17 resolved as shift
